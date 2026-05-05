@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Our Story — Certified Pizza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Bebas+Neue&family=Oswald:wght@400;600&family=Archivo+Black&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .story-hero {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 80px 40px 80px;
+  }
+  .story-hero-inner { max-width: 1440px; margin: 0 auto; }
+  .story-hero .crumb {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    opacity: 0.5; margin-bottom: 24px;
+  }
+  .story-hero h1 {
+    font-size: clamp(72px, 13vw, 200px);
+    color: var(--bg);
+    line-height: 0.85;
+  }
+  .story-hero h1 em { font-style: normal; color: var(--red); }
+  .story-hero p {
+    margin-top: 32px;
+    max-width: 620px;
+    font-size: 19px;
+    opacity: 0.78;
+    line-height: 1.55;
+  }
+
+  .opener {
+    padding: 100px 40px;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .opener .label { color: var(--muted); margin-bottom: 18px; display: block; }
+  .opener .pull {
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(48px, 6vw, 84px);
+    line-height: 0.95;
+    letter-spacing: 0.005em;
+  }
+  .opener p { font-size: 17px; line-height: 1.65; color: var(--ink-soft); }
+  .opener p + p { margin-top: 18px; }
+
+  /* Timeline */
+  .timeline {
+    background: var(--bg-alt);
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 100px 40px;
+  }
+  .timeline-inner { max-width: 1440px; margin: 0 auto; }
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--ink);
+  }
+  .tl-cell {
+    padding: 32px 28px;
+    border-right: 1px solid var(--ink);
+    background: var(--bg);
+    display: flex; flex-direction: column; gap: 14px;
+    min-height: 280px;
+  }
+  .tl-cell:last-child { border-right: none; }
+  .tl-year {
+    font-family: 'Anton', sans-serif;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--red);
+  }
+  .tl-cell h3 {
+    font-size: 22px; line-height: 1.05; text-transform: uppercase;
+  }
+  .tl-cell p {
+    font-size: 14px; line-height: 1.55; color: var(--ink-soft);
+    flex: 1;
+  }
+
+  /* Streets */
+  .streets {
+    padding: 100px 40px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .streets-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    margin-top: 40px;
+  }
+  .street {
+    padding: 32px 28px 32px 0;
+    border-bottom: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+  }
+  .streets-grid > .street:nth-child(3n) { border-right: none; }
+  .streets-grid > .street { padding-left: 28px; }
+  .streets-grid > .street:nth-child(3n+1) { padding-left: 0; }
+  .street .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.14em; color: var(--muted);
+  }
+  .street h3 { font-size: 28px; margin-top: 8px; line-height: 1; text-transform: uppercase; }
+  .street h3 small { font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--red); margin-left: 6px; vertical-align: middle; letter-spacing: 0.14em; }
+  .street p { font-size: 14px; color: var(--ink-soft); line-height: 1.55; margin-top: 10px; }
+
+  /* Values pulled */
+  .values {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 120px 40px;
+  }
+  .values-inner { max-width: 1440px; margin: 0 auto; }
+  .values h2 {
+    font-size: clamp(56px, 9vw, 144px);
+    color: var(--bg);
+    margin-bottom: 60px;
+  }
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(245,241,234,.15);
+    border: 1px solid rgba(245,241,234,.15);
+  }
+  .value {
+    padding: 32px;
+    background: var(--ink);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .value .num {
+    font-family: 'Anton', sans-serif;
+    font-size: 48px; color: var(--red); line-height: 1;
+  }
+  .value h3 { font-size: 26px; color: var(--bg); }
+  .value p { opacity: 0.7; line-height: 1.6; }
+
+  /* Quote */
+  .quote {
+    padding: 120px 40px;
+    max-width: 1440px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .quote blockquote {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(36px, 5vw, 72px);
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .quote blockquote em { font-style: normal; color: var(--red); }
+  .quote cite {
+    display: block;
+    margin-top: 32px;
+    font-style: normal;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (max-width: 1024px) {
+    .opener, .timeline-grid, .streets-grid, .values-grid { grid-template-columns: 1fr; }
+    .tl-cell { border-right: none; border-bottom: 1px solid var(--ink); }
+    .streets-grid > .street { border-right: none; padding-left: 0 !important; }
+    .nav-links { display: none; }
+  }
+</style>
+<script>window.__page='story';</script>
+</head>
+<body>
+<div id="nav-slot"></div>
+
+<header class="story-hero">
+  <div class="story-hero-inner">
+    <div class="crumb">Our Story · Family-owned since the start</div>
+    <h1 class="display">Pizza,<br>The <em>family</em><br>way.</h1>
+    <p>We're a family-owned pizzeria in the heart of St Marys. We take pride in our food — every dough hand-stretched, every pie made to order, every name a tip of the cap to the streets that built the Nepean.</p>
+  </div>
+</header>
+
+<section class="opener">
+  <div>
+    <span class="label mono">[ The story so far ]</span>
+    <div class="ph" style="aspect-ratio:3/4;width:100%;max-width:480px"><span>FAMILY · FIRST OVEN · ST MARYS</span></div>
+  </div>
+  <div>
+    <p class="pull display">It started with one oven, one recipe, and the stubborn belief that a pizza ought to be honest.</p>
+    <div style="margin-top:32px;max-width:640px">
+      <p>Two brothers, a Nonna's recipe book, and a custom stone-deck oven that took three days to install. We opened in St Marys because it's home — and because the Nepean deserved a pizza place that took the craft as seriously as any Sydney CBD venue.</p>
+      <p>From day one we've done things the long way around. Doughs cold-fermented for 48 hours. Tomatoes from San Marzano because nothing else tastes like them. Mozzarella torn by hand because a knife crushes the curd. We don't cut corners — even on the 30-inch.</p>
+      <p>Today we're still family-run. You'll usually find one of us in the kitchen, one of us out front, and Nonna telling everyone what they're doing wrong. Come hungry — and stay a while.</p>
+    </div>
+  </div>
+</section>
+
+<section class="timeline">
+  <div class="timeline-inner">
+    <div class="sh" style="border-color:var(--ink)">
+      <div>
+        <span class="label" style="display:block;margin-bottom:14px;color:var(--muted)">[ A short timeline ]</span>
+        <h2 class="display">From kitchen<br>to oven.</h2>
+      </div>
+      <span class="mono" style="color:var(--muted)">Four chapters · still being written</span>
+    </div>
+    <div class="timeline-grid">
+      <div class="tl-cell">
+        <div class="tl-year">'18</div>
+        <h3 class="display">The Idea</h3>
+        <p>Two brothers, three margheritas a week at the kitchen table, and Nonna's recipe book open to page 14. The plan started here.</p>
+      </div>
+      <div class="tl-cell">
+        <div class="tl-year">'20</div>
+        <h3 class="display">The Oven</h3>
+        <p>A custom stone-deck oven was installed in St Marys on a Tuesday. It took three days to commission. We've never moved it since.</p>
+      </div>
+      <div class="tl-cell">
+        <div class="tl-year">'21</div>
+        <h3 class="display">First Slice</h3>
+        <p>We opened our doors at 5 Crana Street. Margherita, marinara, and a quiet Tuesday night. By Saturday there was a queue out the door.</p>
+      </div>
+      <div class="tl-cell">
+        <div class="tl-year">'24</div>
+        <h3 class="display">The 30-inch</h3>
+        <p>We built a custom peel and rebuilt our oven floor to fit it. The first 30-inch came out for a 21st birthday. It's been on the menu ever since.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="streets">
+  <div class="sh">
+    <div>
+      <span class="label" style="display:block;margin-bottom:14px;color:var(--muted)">[ Why street names? ]</span>
+      <h2 class="display">A pizza for<br>every street.</h2>
+    </div>
+    <p style="max-width:380px;text-align:right;color:var(--ink-soft);font-size:14px;line-height:1.55">Each pie on our menu carries the name of a road, a heritage corner, or a thoroughfare that built the Nepean. A small tip of the cap to home.</p>
+  </div>
+  <div class="streets-grid">
+    <div class="street"><span class="num">№ 01</span><h3 class="display">Queen Street <small>→ Margherita</small></h3><p>The main vein of St Marys. Honest, busy, classic. Our margherita carries the name.</p></div>
+    <div class="street"><span class="num">№ 02</span><h3 class="display">Great Western <small>→ Meat Lover</small></h3><p>The highway that connects everything. A heavyweight pie for a heavyweight road.</p></div>
+    <div class="street"><span class="num">№ 03</span><h3 class="display">Mamre Road <small>→ The Monster</small></h3><p>Long, loud and unmissable. Lent its name to our 30-inch signature.</p></div>
+    <div class="street"><span class="num">№ 04</span><h3 class="display">Charles Hackett <small>→ All-meat</small></h3><p>A working-man's road. We named the all-meat 30-inch combo after it.</p></div>
+    <div class="street"><span class="num">№ 05</span><h3 class="display">Phillip Street <small>→ Quattro Formaggi</small></h3><p>Quiet, refined, full of character. Four cheeses, no apologies.</p></div>
+    <div class="street"><span class="num">№ 06</span><h3 class="display">Henry Lawson <small>→ Prosciutto</small></h3><p>Named for the poet. San Daniele prosciutto, rocket, lemon, parm.</p></div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="values-inner">
+    <span class="label" style="display:block;margin-bottom:14px;opacity:.5">[ House rules ]</span>
+    <h2 class="display">Three things<br>we don't<br>compromise on.</h2>
+    <div class="values-grid">
+      <div class="value">
+        <div class="num">01</div>
+        <h3 class="display">Time on the dough.</h3>
+        <p>48 hours of cold ferment. No shortcuts, no chemical accelerants. The flavour comes from the wait.</p>
+      </div>
+      <div class="value">
+        <div class="num">02</div>
+        <h3 class="display">Heat in the oven.</h3>
+        <p>The deck runs hot — over 350°C. Every pizza cooks fast, blistered at the cornicione, soft in the centre. The way it should.</p>
+      </div>
+      <div class="value">
+        <div class="num">03</div>
+        <h3 class="display">Hands on the table.</h3>
+        <p>A pizzeria is a place to sit down. We make sure every guest is greeted, fed, and remembered next time they walk in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote">
+  <span class="label mono" style="display:block;margin-bottom:24px;color:var(--muted)">[ Nonna says ]</span>
+  <blockquote class="display">
+    "If you can't taste the <em>flour</em>, the <em>time</em>, and the <em>family</em><br>— it isn't pizza."
+  </blockquote>
+  <cite>— Nonna Rosa, head of quality control</cite>
+</section>
+
+<div id="footer-slot"></div>
+<script src="partials.js"></script>
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Certified Pizza — St Marys</title>
+<template id="__bundler_thumbnail" data-bg-color="#0a0a0a">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0a0a0a"/>
+    <text x="600" y="380" font-family="Impact, 'Anton', sans-serif" font-size="180" font-weight="900" fill="#f5f1ea" text-anchor="middle" letter-spacing="4">CERTIFIED</text>
+    <text x="600" y="540" font-family="Impact, 'Anton', sans-serif" font-size="180" font-weight="900" fill="#ce2b37" text-anchor="middle" letter-spacing="4">PIZZA</text>
+    <circle cx="600" cy="650" r="6" fill="#009246"/>
+    <circle cx="624" cy="650" r="6" fill="#f5f1ea"/>
+    <circle cx="648" cy="650" r="6" fill="#ce2b37"/>
+  </svg>
+</template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Bebas+Neue&family=Oswald:wght@400;600&family=Archivo+Black&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Home-specific */
+  .hero {
+    position: relative;
+    background: var(--ink);
+    color: var(--bg);
+    overflow: hidden;
+    border-bottom: 1px solid var(--ink);
+  }
+  .hero-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 60px 40px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    min-height: 720px;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bg);
+    opacity: 0.7;
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
+  .hero h1 {
+    font-size: clamp(80px, 12vw, 192px);
+    line-height: 0.85;
+    color: var(--bg);
+    margin: 0;
+  }
+  .hero h1 .stroke {
+    -webkit-text-stroke: 2px var(--bg);
+    color: transparent;
+  }
+  .hero h1 .red { color: var(--red); }
+  .hero-sub {
+    margin-top: 32px;
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 460px;
+    color: rgba(245, 241, 234, 0.75);
+  }
+  .hero-actions {
+    margin-top: 36px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .hero-stats {
+    margin-top: 56px;
+    border-top: 1px solid rgba(245, 241, 234, 0.15);
+    padding-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .hero-stat .num {
+    font-family: 'Anton', sans-serif;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--bg);
+  }
+  .hero-stat .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-top: 8px;
+  }
+
+  /* The 30-inch pizza visual */
+  .pizza-stage {
+    position: relative;
+    aspect-ratio: 1/1;
+    width: 100%;
+    max-width: 640px;
+    margin-left: auto;
+  }
+  .pizza-disc {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed rgba(245, 241, 234, 0.25);
+    display: grid; place-items: center;
+    color: rgba(245, 241, 234, 0.4);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .pizza-30 {
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%; height: 95%;
+    border: 2px solid var(--bg);
+    background:
+      radial-gradient(circle at 30% 28%, rgba(206,43,55,0.22) 0 30px, transparent 31px),
+      radial-gradient(circle at 70% 38%, rgba(206,43,55,0.22) 0 26px, transparent 27px),
+      radial-gradient(circle at 38% 70%, rgba(206,43,55,0.22) 0 28px, transparent 29px),
+      radial-gradient(circle at 65% 70%, rgba(206,43,55,0.22) 0 24px, transparent 25px),
+      radial-gradient(circle at 50% 50%, rgba(206,43,55,0.18) 0 22px, transparent 23px),
+      radial-gradient(circle at 25% 50%, rgba(0,146,70,0.16) 0 14px, transparent 15px),
+      radial-gradient(circle at 78% 60%, rgba(0,146,70,0.16) 0 12px, transparent 13px),
+      radial-gradient(circle at 55% 25%, rgba(0,146,70,0.16) 0 11px, transparent 12px),
+      #1c1c1c;
+  }
+  .pizza-30::before {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(245, 241, 234, 0.15);
+  }
+  .pizza-12 {
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 38%; height: 38%;
+    border: 1px solid rgba(245, 241, 234, 0.5);
+    color: rgba(245, 241, 234, 0.6);
+    background: rgba(0,0,0,0.15);
+  }
+  .pizza-16 {
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 53%; height: 53%;
+    border: 1px solid rgba(245, 241, 234, 0.4);
+    color: rgba(245, 241, 234, 0.5);
+    background: rgba(0,0,0,0.1);
+  }
+  .size-tag {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    background: var(--bg);
+    color: var(--ink);
+    padding: 4px 10px;
+    white-space: nowrap;
+  }
+  .size-tag.t30 { top: -10px; left: 50%; transform: translateX(-50%); background: var(--red); color: #fff; }
+  .size-tag.t16 { top: 22%; right: 0; }
+  .size-tag.t12 { bottom: 30%; left: 8%; }
+
+  .hero-corner {
+    position: absolute;
+    bottom: 24px; right: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(245, 241, 234, 0.4);
+    display: flex; gap: 12px; align-items: center;
+  }
+
+  /* Specials grid */
+  .specials {
+    background: var(--bg);
+    padding: 100px 40px;
+  }
+  .specials-inner { max-width: 1440px; margin: 0 auto; }
+  .specials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .special {
+    background: var(--bg);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: background 0.2s;
+  }
+  .special:hover { background: var(--bg-alt); }
+  .special-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+  }
+  .special h3 {
+    font-size: 36px;
+    line-height: 0.95;
+  }
+  .special p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    flex: 1;
+  }
+  .special .meta {
+    display: flex; justify-content: space-between;
+    border-top: 1px solid var(--rule);
+    padding-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .special .price { color: var(--red); font-weight: 600; }
+
+  /* Story strip */
+  .story-strip {
+    background: var(--bg-alt);
+    padding: 100px 40px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .story-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .story-strip h2 {
+    font-size: clamp(56px, 8vw, 128px);
+    margin-bottom: 24px;
+  }
+  .story-strip p.lede {
+    font-size: 19px;
+    line-height: 1.55;
+    max-width: 540px;
+    color: var(--ink-soft);
+  }
+  .story-strip p + p { margin-top: 16px; }
+  .story-img {
+    aspect-ratio: 4/5;
+    width: 100%;
+  }
+
+  /* Locations + visit */
+  .visit {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 100px 40px;
+  }
+  .visit-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+  .visit h2 {
+    font-size: clamp(48px, 7vw, 112px);
+    color: var(--bg);
+  }
+  .visit-list {
+    display: flex; flex-direction: column;
+    gap: 20px;
+  }
+  .visit-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(245, 241, 234, 0.15);
+    align-items: baseline;
+  }
+  .visit-row .k {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  .visit-row .v {
+    font-family: 'Anton', sans-serif;
+    font-size: 28px;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  .visit-cta {
+    margin-top: 32px;
+    display: flex; gap: 12px; flex-wrap: wrap;
+  }
+
+  /* Reviews */
+  .reviews {
+    padding: 100px 40px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .review {
+    border: 1px solid var(--rule);
+    padding: 28px;
+    display: flex; flex-direction: column;
+    gap: 18px;
+  }
+  .review-stars { color: var(--red); letter-spacing: 2px; font-size: 14px; }
+  .review p {
+    font-size: 16px; line-height: 1.55;
+    font-style: italic;
+    flex: 1;
+  }
+  .review .who {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+    padding-top: 14px;
+  }
+
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; padding-bottom: 60px; }
+    .pizza-stage { margin: 0 auto; }
+    .specials-grid, .review-grid { grid-template-columns: 1fr; }
+    .story-inner, .visit-inner, .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+    .nav-links { display: none; }
+  }
+</style>
+<script>window.__page='home';</script>
+</head>
+<body>
+<div id="nav-slot"></div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        <span>Family-owned · St Marys NSW · Home of the 30-inch</span>
+      </div>
+      <h1 class="display">
+        The<br>
+        <span style="color:var(--red)">30-inch</span><br>
+        <span class="stroke">Pizza</span>
+      </h1>
+      <p class="hero-sub">
+        Two and a half feet of stone-baked, hand-stretched pizza. The biggest pie in the Nepean — and proof that we don't do anything by halves.
+      </p>
+      <div class="hero-actions">
+        <a href="menu.html" class="btn btn-light">See the menu →</a>
+        <a href="order.html" class="btn btn-red">Order online</a>
+        <a href="tel:0286057558" class="mono" style="color:var(--bg);opacity:.8;margin-left:8px">or call (02) 8605 7558</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">30″</div>
+          <div class="lbl">Our biggest pie</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">14</div>
+          <div class="lbl">Pizzas on the menu</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">10+</div>
+          <div class="lbl">Hungry mates fed</div>
+        </div>
+      </div>
+    </div>
+    <div class="pizza-stage" aria-hidden="true">
+      <div class="pizza-disc pizza-30">
+        <span class="size-tag t30">30 inch · feeds 10+</span>
+        <div class="pizza-disc pizza-16">
+          <span class="size-tag t16">16″ Large</span>
+          <div class="pizza-disc pizza-12">
+            <span class="size-tag t12">12″ Reg</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-corner">
+    <span>Scroll</span>
+    <span style="display:inline-block;width:32px;height:1px;background:rgba(245,241,234,0.4)"></span>
+    <span>The biggest pie in NSW</span>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Hand-stretched since day one <span class="dot"></span> 30-inch monster pies <span class="dot"></span> Named after Nepean streets <span class="dot"></span> Family owned in St Marys <span class="dot"></span> Dine in · take-away · delivery <span class="dot"></span></span>
+    <span>Hand-stretched since day one <span class="dot"></span> 30-inch monster pies <span class="dot"></span> Named after Nepean streets <span class="dot"></span> Family owned in St Marys <span class="dot"></span> Dine in · take-away · delivery <span class="dot"></span></span>
+  </div>
+</div>
+
+<!-- Specials -->
+<section class="specials">
+  <div class="specials-inner">
+    <div class="sh">
+      <div>
+        <span class="label" style="display:block;margin-bottom:14px;color:var(--muted)">[ 01 — Featured ]</span>
+        <h2 class="display">House<br>Specials</h2>
+      </div>
+      <div style="max-width:380px;text-align:right">
+        <p style="font-size:14px;color:var(--ink-soft);line-height:1.55">Each pizza is named after a street that built the Nepean. Some you'll know, some you'll have to look up.</p>
+        <a href="menu.html" class="mono" style="display:inline-flex;gap:8px;margin-top:14px;border-bottom:1px solid var(--ink);padding-bottom:2px">See full menu →</a>
+      </div>
+    </div>
+
+    <div class="specials-grid">
+      <div class="special">
+        <span class="special-num">№ 01 · MARGHERITA</span>
+        <div class="ph" style="aspect-ratio:4/3"><span>PIZZA · QUEEN ST</span></div>
+        <h3 class="display">The Queen Street</h3>
+        <p>San Marzano, fior di latte, fresh basil, Pendle Hill olive oil. The classic — and a benchmark.</p>
+        <div class="meta">
+          <span>12″ · 16″ · 30″</span>
+          <span class="price">From $19</span>
+        </div>
+      </div>
+      <div class="special">
+        <span class="special-num">№ 02 · MEAT LOVER</span>
+        <div class="ph" style="aspect-ratio:4/3"><span>PIZZA · GREAT WESTERN</span></div>
+        <h3 class="display">The Great<br>Western</h3>
+        <p>Pepperoni, hot soppressata, Italian sausage, smoked pancetta, mozzarella. Heavyweight.</p>
+        <div class="meta">
+          <span>12″ · 16″ · 30″</span>
+          <span class="price">From $26</span>
+        </div>
+      </div>
+      <div class="special">
+        <span class="special-num">№ 03 · 30-INCH HERO</span>
+        <div class="ph dark" style="aspect-ratio:4/3;background-color:#1a1a1a;color:#888"><span>30-INCH MONSTER · MAMRE</span></div>
+        <h3 class="display">The Mamre<br>Monster</h3>
+        <p>Our signature 30-inch beast. Half meat lover, half supreme, all 30 inches of it. Booking recommended.</p>
+        <div class="meta">
+          <span>30″ only · feeds 10+</span>
+          <span class="price">$89</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Story strip -->
+<section class="story-strip">
+  <div class="story-inner">
+    <div>
+      <span class="label" style="display:block;margin-bottom:18px;color:var(--muted)">[ 02 — Our Story ]</span>
+      <h2 class="display">Pizza,<br>The Family<br>Way.</h2>
+      <p class="lede">We're a family-owned pizzeria in the heart of St Marys. We take pride in our food — every dough is hand-stretched, every pie made to order, every name a tip of the cap to the streets we grew up on.</p>
+      <p class="lede">Dine in, take-away, or delivery. However you want it, we'll make it certified.</p>
+      <a href="story.html" class="btn" style="margin-top:30px">Read our story →</a>
+    </div>
+    <div class="ph story-img"><span>FAMILY PORTRAIT · KITCHEN</span></div>
+  </div>
+</section>
+
+<!-- Visit -->
+<section class="visit">
+  <div class="visit-inner">
+    <div>
+      <span class="label" style="display:block;margin-bottom:18px;opacity:.6">[ 03 — Visit ]</span>
+      <h2 class="display">Find us in<br>the heart of<br>St Marys.</h2>
+      <p style="margin-top:24px;max-width:440px;opacity:.8;font-size:16px;line-height:1.6">Sit in, take it home, or get it delivered. We're open six nights a week — closed Mondays so we can rest the dough (and ourselves).</p>
+      <div class="visit-cta">
+        <a href="contact.html" class="btn btn-light">Get directions →</a>
+        <a href="order.html" class="btn btn-red">Order delivery</a>
+      </div>
+    </div>
+    <div class="visit-list">
+      <div class="visit-row"><span class="k">Address</span><span class="v">5 Crana Street, St Marys NSW 2760</span></div>
+      <div class="visit-row"><span class="k">Phone</span><span class="v">(02) 8605 7558</span></div>
+      <div class="visit-row"><span class="k">Tue–Thu</span><span class="v">5pm — 9pm</span></div>
+      <div class="visit-row"><span class="k">Fri–Sat</span><span class="v">5pm — 10pm</span></div>
+      <div class="visit-row"><span class="k">Sunday</span><span class="v">5pm — 9pm</span></div>
+      <div class="visit-row"><span class="k">Monday</span><span class="v" style="color:var(--red)">Closed</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="reviews">
+  <div class="sh">
+    <div>
+      <span class="label" style="display:block;margin-bottom:14px;color:var(--muted)">[ 04 — Word of mouth ]</span>
+      <h2 class="display">Certified<br>Reviews.</h2>
+    </div>
+    <div style="display:flex;align-items:end;gap:24px">
+      <div style="text-align:right">
+        <div style="font-family:'Anton',sans-serif;font-size:64px;line-height:1">4.8</div>
+        <div class="mono" style="color:var(--muted);margin-top:6px">★★★★★ · 412 reviews</div>
+      </div>
+    </div>
+  </div>
+  <div class="review-grid">
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <p>"The 30-inch is no joke. Got one for my son's birthday — fed twelve teenagers and there were still leftovers. Crust was perfect."</p>
+      <div class="who">— Daniela M. · St Marys</div>
+    </div>
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <p>"Best pizza in the Nepean, full stop. The Queen Street margherita is honest, simple, and you can taste every ingredient."</p>
+      <div class="who">— Robert K. · Penrith</div>
+    </div>
+    <div class="review">
+      <div class="review-stars">★★★★★</div>
+      <p>"Family-run and you can feel it. They know the regulars by name and they treat newcomers like locals."</p>
+      <div class="who">— Sophie T. · Werrington</div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-slot"></div>
+<script src="partials.js"></script>
+</body>
+</html>
